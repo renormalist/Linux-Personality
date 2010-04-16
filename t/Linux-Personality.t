@@ -7,7 +7,7 @@
 
 use Test::More tests => 4;
 BEGIN { use_ok('Linux::Personality') };
-
+use Linux::Personality qw/ personality PER_LINUX32 /;
 
 my $fail = 0;
 foreach my $constname (qw(
@@ -43,5 +43,5 @@ SKIP: {
         like($per_uname, qr/i[36]86/, "personality set to linux32");
 }
 
-&Linux::Personality::personality(0x0008);
+personality(PER_LINUX32);
 ok(1, "survived personality set");

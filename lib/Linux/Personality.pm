@@ -17,75 +17,45 @@ our @ISA = qw(Exporter);
 # This allows declaration	use Linux::Personality ':all';
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
-our %EXPORT_TAGS = ( 'all' => [ qw(
-	ADDR_COMPAT_LAYOUT
-	ADDR_LIMIT_32BIT
-	ADDR_LIMIT_3GB
-	ADDR_NO_RANDOMIZE
-	MMAP_PAGE_ZERO
-	PER_BSD
-	PER_HPUX
-	PER_IRIX32
-	PER_IRIX64
-	PER_IRIXN32
-	PER_ISCR4
-	PER_LINUX
-	PER_LINUX32
-	PER_LINUX32_3GB
-	PER_LINUX_32BIT
-	PER_MASK
-	PER_OSF4
-	PER_OSR5
-	PER_RISCOS
-	PER_SCOSVR3
-	PER_SOLARIS
-	PER_SUNOS
-	PER_SVR3
-	PER_SVR4
-	PER_UW7
-	PER_WYSEV386
-	PER_XENIX
-	READ_IMPLIES_EXEC
-	SHORT_INODE
-	STICKY_TIMEOUTS
-	WHOLE_SECONDS
-) ] );
 
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
-
-our @EXPORT = qw(
-	ADDR_COMPAT_LAYOUT
-	ADDR_LIMIT_32BIT
-	ADDR_LIMIT_3GB
-	ADDR_NO_RANDOMIZE
-	MMAP_PAGE_ZERO
-	PER_BSD
-	PER_HPUX
-	PER_IRIX32
-	PER_IRIX64
-	PER_IRIXN32
-	PER_ISCR4
-	PER_LINUX
-	PER_LINUX32
-	PER_LINUX32_3GB
-	PER_LINUX_32BIT
-	PER_MASK
-	PER_OSF4
-	PER_OSR5
-	PER_RISCOS
-	PER_SCOSVR3
-	PER_SOLARIS
-	PER_SUNOS
-	PER_SVR3
-	PER_SVR4
-	PER_UW7
-	PER_WYSEV386
-	PER_XENIX
-	READ_IMPLIES_EXEC
-	SHORT_INODE
-	STICKY_TIMEOUTS
-	WHOLE_SECONDS
-);
+our @EXPORT         = ();
+our %EXPORT_TAGS    = (
+                       'funcs'  => [ qw/ personality / ],
+                       'consts' => [ qw/ ADDR_COMPAT_LAYOUT
+                                         ADDR_LIMIT_32BIT
+                                         ADDR_LIMIT_3GB
+                                         ADDR_NO_RANDOMIZE
+                                         MMAP_PAGE_ZERO
+                                         PER_BSD
+                                         PER_HPUX
+                                         PER_IRIX32
+                                         PER_IRIX64
+                                         PER_IRIXN32
+                                         PER_ISCR4
+                                         PER_LINUX
+                                         PER_LINUX32
+                                         PER_LINUX32_3GB
+                                         PER_LINUX_32BIT
+                                         PER_MASK
+                                         PER_OSF4
+                                         PER_OSR5
+                                         PER_RISCOS
+                                         PER_SCOSVR3
+                                         PER_SOLARIS
+                                         PER_SUNOS
+                                         PER_SVR3
+                                         PER_SVR4
+                                         PER_UW7
+                                         PER_WYSEV386
+                                         PER_XENIX
+                                         READ_IMPLIES_EXEC
+                                         SHORT_INODE
+                                         STICKY_TIMEOUTS
+                                         WHOLE_SECONDS
+                                       / ]
+                      );
+our @EXPORT_OK      = map { @$_ } values %EXPORT_TAGS;
+$EXPORT_TAGS{'all'} = [ @EXPORT_OK ];
 
 our $VERSION = '0.01';
 
