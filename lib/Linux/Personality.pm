@@ -112,6 +112,14 @@ Use flags for bugs emulation:
 
 =head1 DESCRIPTION
 
+You can use this for instance when running 32bit compiles in a 32bit
+chroot but running on a 64bit host kernel. Without that the compile
+tools get confused and try do do 64bit in the 32bit environment.
+
+It's somewhat comparable to the setarch (also known as linux32)
+utility. With personality() you can get similar effect inside a Perl
+program.
+
 From "man 2 personality":
 
  NAME
@@ -133,11 +141,11 @@ From "man 2 personality":
         persona equals 0xffffffff.  Otherwise, it will make the
         execution domain referenced by persona the new execution
         domain of the calling process.
-
+ 
  RETURN VALUE
         On success, the previous persona is returned.  On error, -1 is
         returned, and errno is set appropriately.
-
+ 
  ERRORS
         EINVAL The kernel was unable to change the personality.
  
