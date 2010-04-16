@@ -233,12 +233,11 @@ constant (pTHX_ const char *name, STRLEN len, IV *iv_return) {
      Regenerate these constant functions by feeding this entire source file to
      perl -x
 
-#!/home/ss5/perl5101/bin/perl5.10.1 -w
+#!/home/ss5/perl-v5.12.0/bin/perl5.12.0 -w
 use ExtUtils::Constant qw (constant_types C_constant XS_constant);
 
 my $types = {map {($_, 1)} qw(IV)};
 my @names = (qw(),
-            {name=>"ADDR_COMPAT_LAYOUT", type=>"IV", macro=>"1"},
             {name=>"ADDR_LIMIT_32BIT", type=>"IV", macro=>"1"},
             {name=>"ADDR_LIMIT_3GB", type=>"IV", macro=>"1"},
             {name=>"ADDR_NO_RANDOMIZE", type=>"IV", macro=>"1"},
@@ -265,7 +264,6 @@ my @names = (qw(),
             {name=>"PER_UW7", type=>"IV", macro=>"1"},
             {name=>"PER_WYSEV386", type=>"IV", macro=>"1"},
             {name=>"PER_XENIX", type=>"IV", macro=>"1"},
-            {name=>"READ_IMPLIES_EXEC", type=>"IV", macro=>"1"},
             {name=>"SHORT_INODE", type=>"IV", macro=>"1"},
             {name=>"STICKY_TIMEOUTS", type=>"IV", macro=>"1"},
             {name=>"WHOLE_SECONDS", type=>"IV", macro=>"1"});
@@ -356,29 +354,8 @@ __END__
     }
     break;
   case 17:
-    /* Names all of length 17.  */
-    /* ADDR_NO_RANDOMIZE READ_IMPLIES_EXEC */
-    /* Offset 1 gives the best switch position.  */
-    switch (name[1]) {
-    case 'D':
-      if (memEQ(name, "ADDR_NO_RANDOMIZE", 17)) {
-      /*                ^                      */
-        *iv_return = ADDR_NO_RANDOMIZE;
-        return PERL_constant_ISIV;
-      }
-      break;
-    case 'E':
-      if (memEQ(name, "READ_IMPLIES_EXEC", 17)) {
-      /*                ^                      */
-        *iv_return = READ_IMPLIES_EXEC;
-        return PERL_constant_ISIV;
-      }
-      break;
-    }
-    break;
-  case 18:
-    if (memEQ(name, "ADDR_COMPAT_LAYOUT", 18)) {
-      *iv_return = ADDR_COMPAT_LAYOUT;
+    if (memEQ(name, "ADDR_NO_RANDOMIZE", 17)) {
+      *iv_return = ADDR_NO_RANDOMIZE;
       return PERL_constant_ISIV;
     }
     break;

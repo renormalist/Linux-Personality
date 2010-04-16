@@ -1,6 +1,5 @@
 package Linux::Personality;
 
-use 5.010001;
 use strict;
 use warnings;
 use Carp;
@@ -21,8 +20,7 @@ our @ISA = qw(Exporter);
 our @EXPORT         = ();
 our %EXPORT_TAGS    = (
                        'funcs'  => [ qw/ personality / ],
-                       'consts' => [ qw/ ADDR_COMPAT_LAYOUT
-                                         ADDR_LIMIT_32BIT
+                       'consts' => [ qw/ ADDR_LIMIT_32BIT
                                          ADDR_LIMIT_3GB
                                          ADDR_NO_RANDOMIZE
                                          MMAP_PAGE_ZERO
@@ -48,11 +46,12 @@ our %EXPORT_TAGS    = (
                                          PER_UW7
                                          PER_WYSEV386
                                          PER_XENIX
-                                         READ_IMPLIES_EXEC
                                          SHORT_INODE
                                          STICKY_TIMEOUTS
                                          WHOLE_SECONDS
-                                       / ]
+                                       / ],
+                                         # ADDR_COMPAT_LAYOUT # not in 2.6.28
+                                         # READ_IMPLIES_EXEC  # not in 2.6.28
                       );
 our @EXPORT_OK      = map { @$_ } values %EXPORT_TAGS;
 $EXPORT_TAGS{'all'} = [ @EXPORT_OK ];
@@ -156,7 +155,6 @@ None by default.
 
 =head2 Exportable constants
 
-  ADDR_COMPAT_LAYOUT
   ADDR_LIMIT_32BIT
   ADDR_LIMIT_3GB
   ADDR_NO_RANDOMIZE
@@ -183,7 +181,6 @@ None by default.
   PER_UW7
   PER_WYSEV386
   PER_XENIX
-  READ_IMPLIES_EXEC
   SHORT_INODE
   STICKY_TIMEOUTS
   WHOLE_SECONDS

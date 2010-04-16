@@ -1,4 +1,3 @@
-use 5.010001;
 use ExtUtils::MakeMaker;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
@@ -21,7 +20,7 @@ if  (eval {require ExtUtils::Constant; 1}) {
   # files to replace their "fallback" counterparts before distributing your
   # changes.
   my @names = (qw(),
-              {name=>"ADDR_COMPAT_LAYOUT", macro=>"1"},
+#              {name=>"ADDR_COMPAT_LAYOUT", macro=>"1"}, # not in 2.6.28
               {name=>"ADDR_LIMIT_32BIT", macro=>"1"},
               {name=>"ADDR_LIMIT_3GB", macro=>"1"},
               {name=>"ADDR_NO_RANDOMIZE", macro=>"1"},
@@ -48,7 +47,7 @@ if  (eval {require ExtUtils::Constant; 1}) {
               {name=>"PER_UW7", macro=>"1"},
               {name=>"PER_WYSEV386", macro=>"1"},
               {name=>"PER_XENIX", macro=>"1"},
-              {name=>"READ_IMPLIES_EXEC", macro=>"1"},
+#              {name=>"READ_IMPLIES_EXEC", macro=>"1"}, # not in 2.6.28
               {name=>"SHORT_INODE", macro=>"1"},
               {name=>"STICKY_TIMEOUTS", macro=>"1"},
               {name=>"WHOLE_SECONDS", macro=>"1"});
