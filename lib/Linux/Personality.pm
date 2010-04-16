@@ -102,9 +102,9 @@ Linux::Personality - Perl interface to the personality(2) Linux system call.
 Common usage:
 
   use Linux::Personality qw/personality PER_LINUX32 /;
-  system("uname"); # x86_64
+  print `uname -m`;                  # x86_64
   personality(PER_LINUX32);
-  system("uname"); # i386
+  print `uname -m`;                  # i386
 
 Use flags for bugs emulation:
 
@@ -116,7 +116,6 @@ Use flags for bugs emulation:
 From "man 2 personality":
 
  NAME
- 
         personality - set the process execution domain
  
  SYNOPSIS
@@ -124,7 +123,6 @@ From "man 2 personality":
         int personality(unsigned long persona);
  
  DESCRIPTION
-
         Linux supports different execution domains, or personalities,
         for each process.  Among other things, execution domains tell
         Linux how to map signal numbers into signal actions.  The
@@ -138,22 +136,23 @@ From "man 2 personality":
         domain of the calling process.
 
  RETURN VALUE
-
         On success, the previous persona is returned.  On error, -1 is
         returned, and errno is set appropriately.
 
  ERRORS
-
         EINVAL The kernel was unable to change the personality.
  
  CONFORMING TO
-
         personality() is Linux-specific and should not be used in
         programs intended to be portable.
 
 =head2 EXPORT
 
 None by default.
+
+=head2 Exportable functions
+
+  personality
 
 =head2 Exportable constants
 
@@ -201,7 +200,7 @@ Steffen Schwigon, C<< <ss5@renormalist.net> >>
 =head1 CREDITS
 
 Maik Hentsche C<< <maik.hentsche@amd.com> >> for having the problem in
-the first place and digging the according manual pages.
+the first place and digging the according solution.
 
 Florian Ragwitz C<< <rafl@debian.org> >> for the usual Perl low-level
 support.
