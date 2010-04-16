@@ -14,3 +14,7 @@ cover_db
 nytprof.out
 nytprof*
 benchmarks_*
+Personality.o
+Personality.c
+Personality.bs
+
