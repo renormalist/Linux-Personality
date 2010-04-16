@@ -95,20 +95,61 @@ __END__
 
 =head1 NAME
 
-Linux::Personality - Perl extension for blah blah blah
+Linux::Personality - Perl interface to the personality(2) Linux system call.
 
 =head1 SYNOPSIS
 
-  use Linux::Personality;
-  blah blah blah
+Common usage:
+
+  use Linux::Personality qw/personality PER_LINUX32 /;
+  system("uname"); # x86_64
+  personality(PER_LINUX32);
+  system("uname"); # i386
+
+Use flags for bugs emulation:
+
+  use Linux::Personality qw/personality PER_LINUX32 ADDR_LIMIT_3GB SHORT_INODE MMAP_PAGE_ZERO /;
+  personality(PER_LINUX32 | ADDR_LIMIT_3GB | SHORT_INODE | MMAP_PAGE_ZERO);
 
 =head1 DESCRIPTION
 
-Stub documentation for Linux::Personality, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+From "man 2 personality":
 
-Blah blah blah.
+ NAME
+ 
+        personality - set the process execution domain
+ 
+ SYNOPSIS
+        #include <sys/personality.h>
+        int personality(unsigned long persona);
+ 
+ DESCRIPTION
+
+        Linux supports different execution domains, or personalities,
+        for each process.  Among other things, execution domains tell
+        Linux how to map signal numbers into signal actions.  The
+        execution domain system allows Linux to provide limited
+        support for binaries compiled under other Unix-like operating
+        systems.
+
+        This function will return the current personality() when
+        persona equals 0xffffffff.  Otherwise, it will make the
+        execution domain referenced by persona the new execution
+        domain of the calling process.
+
+ RETURN VALUE
+
+        On success, the previous persona is returned.  On error, -1 is
+        returned, and errno is set appropriately.
+
+ ERRORS
+
+        EINVAL The kernel was unable to change the personality.
+ 
+ CONFORMING TO
+
+        personality() is Linux-specific and should not be used in
+        programs intended to be portable.
 
 =head2 EXPORT
 
@@ -148,11 +189,10 @@ None by default.
   STICKY_TIMEOUTS
   WHOLE_SECONDS
 
-
-
 =head1 SEE ALSO
 
  man 2 personality
+ /usr/include/sys/personality.h
 
 =head1 AUTHOR
 
