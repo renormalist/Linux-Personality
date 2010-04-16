@@ -17,4 +17,6 @@ benchmarks_*
 Personality.o
 Personality.c
 Personality.bs
+const-c.inc
+const-xs.inc
 

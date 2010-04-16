@@ -49,6 +49,8 @@ our %EXPORT_TAGS    = (
                                          SHORT_INODE
                                          STICKY_TIMEOUTS
                                          WHOLE_SECONDS
+                                         ADDR_COMPAT_LAYOUT
+                                         READ_IMPLIES_EXEC
                                        / ],
                                          # ADDR_COMPAT_LAYOUT # not in 2.6.28
                                          # READ_IMPLIES_EXEC  # not in 2.6.28
