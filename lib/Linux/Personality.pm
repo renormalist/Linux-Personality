@@ -103,21 +103,26 @@ Common usage:
   use Linux::Personality qw/personality PER_LINUX32 /;
   print `uname -m`;                  # x86_64
   personality(PER_LINUX32);
-  print `uname -m`;                  # i386
+  print `uname -m`;                  # i686
 
 Use flags for bugs emulation:
 
-  use Linux::Personality qw/personality PER_LINUX32 ADDR_LIMIT_3GB SHORT_INODE MMAP_PAGE_ZERO /;
+  use Linux::Personality qw/personality
+                            PER_LINUX32
+                            ADDR_LIMIT_3GB
+                            SHORT_INODE
+                            MMAP_PAGE_ZERO /;
   personality(PER_LINUX32 | ADDR_LIMIT_3GB | SHORT_INODE | MMAP_PAGE_ZERO);
 
 =head1 DESCRIPTION
 
-You can use this for instance when running 32bit compiles in a 32bit
-chroot but running on a 64bit host kernel. Without that the compile
-tools get confused and try do do 64bit in the 32bit environment.
+You can use this for instance when running 32bit compiles started from
+inside a Perl program in a 32bit chroot but running on a 64bit host
+kernel. Without hints the compile tools get confused and try do do
+64bit in the 32bit environment.
 
-It's somewhat comparable to the setarch (also known as linux32)
-utility. With personality() you can get similar effect inside a Perl
+It's somewhat comparable to the C<setarch> (also known as C<linux32>)
+utility. With C<personality> you can get similar effect inside a Perl
 program.
 
 From "man 2 personality":
